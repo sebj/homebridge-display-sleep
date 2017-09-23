@@ -1,11 +1,11 @@
-const Service, Characteristic;
+let Service, Characteristic;
 
 const displayControl = require('display-control');
 
 module.exports = homebridge => {
 	Service = homebridge.hap.Service;
 	Characteristic = homebridge.hap.Characteristic;
-	homebridge.registerAccessory('homebridge-computer-sleep', 'Sleep', DeviceStateAccessory);
+	homebridge.registerAccessory('homebridge-computer-sleep', 'ComputerSleep', DeviceStateAccessory);
 }
 
 class DeviceStateAccessory {
@@ -15,9 +15,7 @@ class DeviceStateAccessory {
 		this.service = 'Switch';
 		this.config = config;
 
-		this.retrieveSwitchState = this.retrieveSwitchState.bind(this)
-
-		this.on = false
+		this.on = true;
 	}
 
 	setState (on, callback) {
@@ -29,7 +27,8 @@ class DeviceStateAccessory {
 			displayControl.sleep();
 		}
 
-		this.on = on
+		this.on = on;
+		this.switchService.setCharacteristic(Characteristic.On, on);
 
 		const state = on ? 'on' : 'off';
 		this.log('Set ' + this.config.name + ' to ' + state);
@@ -48,11 +47,11 @@ class DeviceStateAccessory {
 		const switchService = new Service.Switch(this.config.name);
 
 		switchService
+			.setCharacteristic(Characteristic.On, true)
 			.getCharacteristic(Characteristic.On)
 			.on('set', this.setState.bind(this));
 
 		this.switchService = switchService;
-		this.retrieveSwitchState();
 
 		return [switchService];
 	}
