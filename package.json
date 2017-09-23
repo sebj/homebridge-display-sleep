@@ -1,0 +1,22 @@
+{
+	"name": "homebridge-computer-status",
+	"version": "1.0.0",
+	"description": "Computer sleep plugin for homebridge: https://github.com/nfarina/homebridge",
+	"keywords": [
+		"homebridge-plugin"
+	],
+	"engines": {
+		"node": ">=6.0.0",
+		"homebridge": ">=0.2.0"
+	},
+	"author": {
+		"name": "Seb Jachec"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/sebj/homebridge-computer-status.git"
+	},
+	"dependencies": {
+		"display-control": "latest"
+	}
+}
