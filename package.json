@@ -1,20 +1,20 @@
 {
-	"name": "homebridge-computer-status",
+	"name": "homebridge-computer-sleep",
 	"version": "1.0.0",
-	"description": "Computer sleep plugin for homebridge: https://github.com/nfarina/homebridge",
+	"description": "A switch Homebridge plugin to sleep and wake the host Homebridge computer.",
 	"keywords": [
 		"homebridge-plugin"
 	],
 	"engines": {
-		"node": ">=6.0.0",
-		"homebridge": ">=0.2.0"
+		"node": ">=7.0.0",
+		"homebridge": ">=0.4.27"
 	},
 	"author": {
 		"name": "Seb Jachec"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git://github.com/sebj/homebridge-computer-status.git"
+		"url": "git://github.com/sebj/homebridge-computer-sleep.git"
 	},
 	"dependencies": {
 		"display-control": "latest"
