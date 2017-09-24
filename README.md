@@ -1,11 +1,12 @@
 # homebridge-computer-sleep
 
-A switch Homebridge plugin to sleep and wake the host Homebridge computer.
+A [Homebridge](https://github.com/nfarina/homebridge) switch plugin to sleep and wake the host computer.
 
 ## Installation
 
-1. Install this plugin using `npm install -g homebridge-computer-sleep`
-2. Update your configuration file. See **Configuration** below.
+1. Install Homebridge using `npm install -g homebridge`
+2. Install this plugin using `npm install -g homebridge-computer-sleep`
+3. Update your configuration file. See **Configuration** below.
 
 ## Configuration
 
@@ -20,3 +21,8 @@ Example:
     }
 ]
 ```
+
+## Usage
+* Create an accessory as shown above in **Configuration** 
+    * Setting `name` to the name of your device is recommended - 'Gaming PC', 'MacBook Pro', etc.
+* The accessory will show as On in HomeKit when your device is awake (default), and Off when it is toggled off to sleep.
