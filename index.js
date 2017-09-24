@@ -12,9 +12,8 @@ class DeviceStateAccessory {
 
 	constructor (log, config) {
 		this.log = log;
-		this.service = 'Switch';
 		this.config = config;
-
+		this.service = 'Switch';
 		this.on = true;
 	}
 
