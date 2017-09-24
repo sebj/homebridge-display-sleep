@@ -1,6 +1,6 @@
-let Service, Characteristic;
-
 const displayControl = require('display-control');
+
+let Service, Characteristic;
 
 module.exports = homebridge => {
 	Service = homebridge.hap.Service;

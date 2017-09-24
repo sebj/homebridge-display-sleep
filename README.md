@@ -1,6 +1,6 @@
 # homebridge-computer-sleep
 
-A switch Homebridge plugin to sleep and wake a computer.
+A switch Homebridge plugin to sleep and wake the host Homebridge computer.
 
 ## Installation
 
