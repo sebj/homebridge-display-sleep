@@ -1,9 +1,12 @@
 {
 	"name": "homebridge-computer-sleep",
-	"version": "1.0.0",
-	"description": "A switch Homebridge plugin to sleep and wake the host Homebridge computer.",
+	"version": "1.0.1",
+	"description": "A Homebridge switch accessory to sleep and wake the host Homebridge computer.",
 	"keywords": [
-		"homebridge-plugin"
+		"homebridge",
+		"homebridge-plugin",
+		"sleep",
+		"computer"
 	],
 	"engines": {
 		"node": ">=7.0.0",
@@ -17,6 +20,7 @@
 		"url": "git://github.com/sebj/homebridge-computer-sleep.git"
 	},
 	"dependencies": {
-		"display-control": "latest"
+		"display-control": "latest",
+		"serial-number": "latest"
 	}
 }

@@ -1,4 +1,7 @@
+const serialNumber = require('serial-number');
 const displayControl = require('display-control');
+
+serialNumber.preferUUID = true;
 
 let Service, Characteristic;
 
@@ -13,12 +16,29 @@ class DeviceStateAccessory {
 	constructor (log, config) {
 		this.log = log;
 		this.config = config;
-		this.service = 'Switch';
 		this.on = true;
+
+		this.informationService = new Service.AccessoryInformation();
+		this.informationService
+			.setCharacteristic(Characteristic.Manufacturer, 'Unknown')
+			.setCharacteristic(Characteristic.Model, 'Unknown')
+			.setCharacteristic(Characteristic.SerialNumber, 'Unknown');
+
+		serialNumber((err, serial) => {
+			if (!err && serial)
+				this.informationService.setCharacteristic(Characteristic.SerialNumber, serial);
+		});
+
+		this.service = new Service.Switch(this.config.name);
+		this.service
+			.setCharacteristic(Characteristic.On, true)
+			.getCharacteristic(Characteristic.On)
+			.on('set', this.setState.bind(this));
 	}
 
 	setState (on, callback) {
-		if (this.on === on) return callback();
+		if (this.on === on)
+			return callback();
 
 		if (on) {
 			displayControl.wake();
@@ -27,7 +47,7 @@ class DeviceStateAccessory {
 		}
 
 		this.on = on;
-		this.switchService.setCharacteristic(Characteristic.On, on);
+		this.service.setCharacteristic(Characteristic.On, on);
 
 		const state = on ? 'on' : 'off';
 		this.log('Set ' + this.config.name + ' to ' + state);
@@ -36,22 +56,6 @@ class DeviceStateAccessory {
 	}
 
 	getServices () {
-		const informationService = new Service.AccessoryInformation();
-		
-		informationService
-			.setCharacteristic(Characteristic.Manufacturer, 'Device Manufacturer')
-			.setCharacteristic(Characteristic.Model, 'Device Model')
-			.setCharacteristic(Characteristic.SerialNumber, 'Device Serial Number');
-
-		const switchService = new Service.Switch(this.config.name);
-
-		switchService
-			.setCharacteristic(Characteristic.On, true)
-			.getCharacteristic(Characteristic.On)
-			.on('set', this.setState.bind(this));
-
-		this.switchService = switchService;
-
-		return [switchService];
+		return [this.informationService, this.service];
 	}
 }

@@ -1,6 +1,6 @@
 # homebridge-computer-sleep
 
-A [Homebridge](https://github.com/nfarina/homebridge) switch plugin to sleep and wake the host computer.
+A [Homebridge](https://github.com/nfarina/homebridge) switch accessory to sleep and wake the host computer.
 
 ## Installation
 
